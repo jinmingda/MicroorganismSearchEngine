@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>${siteTitle}</title>
+</head>
+<body>
+
+    <div class="page-header">
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="/about">Tutorial</a></li>
+            <li role="presentation"><a href="/searchlist">Your Previous Searches</a></li>
+        </ul>
+        <h2>Search Form</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div>${form(value=values)}</div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default pull-right">
+                <div class="panel-heading">Quick Start</div>
+                <table class="table table-hover table-condensed">
+                    <tbody>
+                        <tr py:for="each in searchHistory">
+                            <td>
+                                <a href="${tg.url('/searchform', dict(title=each.title, query=each.query, maxMass=each.max_mass,minMass=each.min_mass, massTolerance=each.mass_tolerance, specMode=each.spec_mode, database=each.database))}">
+                                        ${each.title}</a>
+                            </td>
+                            <td>${each.created}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

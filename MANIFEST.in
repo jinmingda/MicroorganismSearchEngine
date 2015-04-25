@@ -1,0 +1,6 @@
+include start-mse.py
+include *.cfg
+include mse/config/*.cfg
+recursive-include mse/templates *.html
+recursive-include mse/templates *.kid
+recursive-include mse/static *

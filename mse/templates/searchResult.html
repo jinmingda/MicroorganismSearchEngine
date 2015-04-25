@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>Here is your result</title>
+</head>
+<body>
+    <div class="page-header">
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="/searchlist">Back to Search List</a></li>
+        </ul>
+        <h2>Results</h2>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Hits</th>
+                <th>p-value</th>
+                <th>e-value</th>
+            </tr>
+        </thead>
+        <tbody py:for="item in resultData">
+            <tr>
+                <td>${item.microorganism_name}</td>
+                <td>${item.matching_hit}</td>
+                <td>${item.p_value}</td>
+                <td>${item.e_value}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li py:for="page in tg.paginate.pages">
+            <a href="${tg.paginate.get_href(page)}" py:content="page"/>
+        </li>
+    </ul>
+    <br/>
+
+</body>
+</html>

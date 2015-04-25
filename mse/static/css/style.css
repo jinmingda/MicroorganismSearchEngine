@@ -1,0 +1,41 @@
+body {
+  padding-top: 60px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 60px;
+  }
+}
+
+.fielderror {
+	color: red;
+	font-weight: bold;
+}
+
+#appLogo {
+    color: green;
+}
+
+#listIcon {
+    margin-right: 20px;
+}
+
+#signinBox {
+    width: 50%;
+}
+
+td#Incomplete {
+    color: red;
+}
+
+td#Running {
+    color: orange;
+}
+
+td#Done {
+    color: green;
+}
+
+#align-center {
+    text-align: center;
+}

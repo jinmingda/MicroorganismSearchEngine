@@ -1,0 +1,2 @@
+db_module=mse.model
+history_dir=$base/mse/sqlobject-history

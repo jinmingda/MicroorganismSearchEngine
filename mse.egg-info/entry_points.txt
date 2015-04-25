@@ -1,0 +1,4 @@
+[console_scripts]
+bootstrap-mse = mse.command:bootstrap
+start-mse = mse.command:start
+

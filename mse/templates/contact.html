@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>${siteTitle}</title>
+</head>
+<body>
+    <div class="page-header">
+        <h2>Contact</h2>
+    </div>
+    <!-- Repeating Unit -->
+    <div class="panel panel-default" py:for="contact in contacts">
+        <ul style="list-style: none">
+            <li><h3><span class="fa fa-user" id="listIcon"></span>${contact.name}</h3></li>
+            <li><h3><span class="fa fa-envelope" id="listIcon"></span><a href="#">${contact.email}</a></h3></li>
+            <li><h3><span class="fa fa-phone" id="listIcon"></span>${contact.phone}</h3></li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:py="http://genshi.edgewall.org/"
+      xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<xi:include href="master.html" />
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type" py:replace="''"/>
+    <title>${siteTitle}</title>
+</head>
+<body>
+    <!--
+    <script>
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            alert("!!!!!!!!!!!!!");
+            var anchor = $(event.relatedTarget); // Button that triggered the modal
+            var recipient = anchor.data('searchID'); // Extract info from data-* attributes
+            alert("hello!" + str(recipient));
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+        });
+    </script>
+    -->
+
+    <!-- Popup dialog to confirm delete -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Confirm Delete</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Deleted record could not be recovered.
+                        Are you sure you want to proceed?</p>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-primary"
+                            href="${tg.url('/searchdelete')}">Yes</a>
+                    <a type="button" class="btn btn-default" data-dismiss="modal">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="/searchform">New Assignment</a></li>
+        </ul>
+        <h2>Your Search List</h2>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Created Time</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr py:for="each in searchData">
+                <td>${each.title}</td>
+                <td>${each.created}</td>
+                <td id="${each.status}">${each.status}</td>
+                <td>
+                    <a href="${tg.url('/searchresult', dict(searchID=each.id))}" py:if="each.status == 'Done'">
+                        <p>View</p>
+                    </a>
+                </td>
+                <!--
+                <td>
+                    <a data-toggle="modal" data-target="#deleteModal" data-searchID="${each.id}" href="javascript:verify(${each.id})">
+                        <p>Delete</p>
+                    </a>
+                </td>
+                -->
+                <td>
+                    <a onclick="return confirm('Do you really want to delete this record?');"
+                       href="${tg.url('/searchdelete',id=each.id)}">
+                        <p>Delete</p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li py:for="page in tg.paginate.pages">
+            <a href="${tg.paginate.get_href(page)}" py:content="page"/>
+        </li>
+    </ul>
+    <br/>
+
+</body>
+</html>
