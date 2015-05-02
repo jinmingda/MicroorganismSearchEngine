@@ -15,3 +15,4 @@ python start-mse.py
 ```
 Open `localhost:8080` on browser
 
+## AWS deployment is under preparation
